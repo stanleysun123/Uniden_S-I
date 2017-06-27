@@ -1,0 +1,80 @@
+extends layout
+
+block page
+  - var menu = 'sale'
+
+block content
+ p
+ p
+  h3 Sale Information :
+
+ table.table.table-stripped
+               
+    thead
+        tr
+            th Month:
+             - for (var i = 0; i < MonthArr.length; ++i) {
+                -  if (i == 2)
+                    th.current= MonthArr[i]
+                -  else
+                    - if (i==6)
+                         th.Next4Month= MonthArr[i]
+                    - else
+                         th= MonthArr[i]
+                     - }
+    tbody
+        tr
+             th SaleHistory:
+              -console.log('salerecords.lengh'+salerecords.lengh)
+              - for (var i = 0; i < MonthArr.length; ++i) {
+                -  if (i < Object.keys(salerecords).length)
+                       td= salerecords[i].Totalqty
+                       -console.log('saleasdasdad111111111'+salerecords[i])
+                -  else 
+                        -  if (i == 2)
+                             td.current= 0
+                        -  else
+                            - if (i==6)
+                                td.Next4Month= 0
+                            - else
+                                td= 0
+               - }
+ 
+        tr
+             th SaleFcsts:
+               if (salerefcsts) >0  
+               - var i = 0
+             each salerefcst, index in salerefcsts
+                -  if (i == 2)
+                    td.current= salerefcst.Totalqty
+                -  else
+                    - if (i==6)
+                       td.Next4Month= salerefcst.Totalqty
+                    - else
+                       td= salerefcst.Totalqty
+                -i=i+1
+
+         tr  
+             th Percentage:
+
+             -console.log('salerecords.lengh'+salerecords.lengh)
+              - for (var i = 0; i < MonthArr.length; ++i) {
+                -  if (i < Object.keys(salerecords).length)
+                    -  if (i == 2)
+                       td.current=  numeral(salerecords[i].Totalqty/salerefcsts[i].Totalqty).format('0%')
+                    -  else
+                        - if (i==6)
+                          td.Next4Month= numeral(salerecords[i].Totalqty/salerefcsts[i].Totalqty).format('0%')
+                        - else
+                          td= numeral(salerecords[i].Totalqty/salerefcsts[i].Totalqty).format('0%')
+                         -console.log('saleasdasdad111111111'+salerecords[i])
+                -  else 
+
+                    -  if (i == 2)
+                       td.current=  numeral(0).format('0%')
+                    -  else
+                        - if (i==6)
+                          td.Next4Month= numeral(0).format('0%')
+                        - else
+                          td= numeral(0).format('0%')
+               - }

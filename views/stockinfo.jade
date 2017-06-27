@@ -1,0 +1,26 @@
+extends layout
+
+block page 
+  - var menu = 'stockinfo'
+
+block content
+ p
+  h1 Full Stock Information 
+  
+ table.table.table-stripped
+        thead
+          tr
+        th Bmodel
+          th Description
+          th Qty
+          th Warehouse
+          th WarehouseName
+        tbody
+          each stock, index in stocks
+            tr
+            td= stock.Bmodel
+            td= stock.Description
+            td= stock.Qty
+            td= stock.Warehouse
+            td= stock.WarehouseName
+          

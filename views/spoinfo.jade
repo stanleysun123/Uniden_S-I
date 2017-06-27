@@ -1,0 +1,36 @@
+extends layout
+
+block page 
+  - var menu = 'PoInfo'
+
+script(type="text/javascript", src="js/blog.js")    
+  
+block content
+  p
+
+  if (pos.length === 0)
+    | There's no SPO yet. 
+    a(href="/login") Log in
+    |  to post and publish.
+  else 
+
+   table.table.table-stripped
+        thead
+          tr
+            th Issuedate
+            th SPO
+            th Lot Number
+            th Memo1
+            th BluLInk
+        tbody
+            each po, index in pos 
+             tr
+              td= po._id.Issueddate
+              td
+                a(href="/pos/#{po._id.Spo}")= po._id.Spo
+              td= po.count
+              td= po.Memo1
+              td
+               a(href="/blu/#{po._id.Blupo}")= po._id.Blupo
+
+     

@@ -1,0 +1,29 @@
+extends layout
+
+block page 
+  - var menu = '2.Stockhisinfo'
+
+block content
+ p
+  h1 Full Stock His Information 
+  
+ table.table.table-stripped
+        thead
+          tr
+        th Bmodel
+          th Description
+          th Qty
+          th Warehouse
+          th WarehouseName
+          th Update
+        tbody
+          each stockhistory, index in stockhistories
+            tr
+            td= stockhistory.Bmodel
+            td= stockhistory.Description
+            td= stockhistory.Qty
+            td= stockhistory.Warehouse
+            td= stockhistory.WarehouseName
+            td #{moment(stockhistory.Update).format("YYYY-MM-DD")}
+            
+          

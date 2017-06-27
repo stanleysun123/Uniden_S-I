@@ -1,0 +1,11 @@
+exports.Article = require('./article');
+exports.User = require('./user');
+exports.Item = require('./item');
+exports.Stock = require('./stock');
+exports.Po = require('./po');
+exports.Pdschedule = require('./pdschedule');
+exports.Sit = require('./sit');
+exports.Stockhistory = require('./stockhistory');
+exports.Salerecord = require('./salerecord');
+exports.Salefcst = require('./salefcst');
+exports.Lot = require('./lot');

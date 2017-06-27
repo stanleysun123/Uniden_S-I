@@ -1,0 +1,85 @@
+extends layout
+
+block page 
+  - var menu = '2.Lotinfo'
+
+block content
+ p
+  h1 Full PO Information 
+  
+ table.table.table-stripped
+        thead
+          tr
+          th Issueddate
+          th Spo
+          th Bmodel
+          th Lot
+          th Qty
+          th RequestedETD
+          th Blupo
+          th Memo
+          th Sit-Invoice
+          th Sit-To
+          th Sit-Lot
+          th Sit-Model
+          th Sit-Bmodel
+          th Sit-Pono
+          th Sit-Qty
+          th Sit-Etd
+          th Sit-Wh
+          th Sit-Memo
+
+        tbody
+
+          -  console.info('lots.length: ' +lots.length)
+
+           - for (var i = 0; i < lots.length; ++i)
+            - {
+              - if (lots[i].Sit.length > 0)
+          
+                - for (var x = 0; x < lots[i].Sit.length; ++x)
+                   - {
+                     tr
+                        td #{moment(lots[i].Issueddate).format("YYYY-MM-DD")}
+                        td= lots[i].Spo
+                        td= lots[i].Bmodel
+                        td= lots[i].Lot
+                        td= lots[i].Qty
+                        td #{moment(lots[i].RequestedETD).format("YYYY-MM-DD")}
+                        td= lots[i].Blupo
+                        td= lots[i].Memo
+                        td= lots[i].Sit[x].Invoice
+                        td= lots[i].Sit[x].To
+                        td= lots[i].Sit[x].Lot
+                        td= lots[i].Sit[x].Model
+                        td= lots[i].Sit[x].Bmodel
+                        td= lots[i].Sit[x].Pono
+                        td= lots[i].Sit[x].Qty
+                        td #{moment(lots[i].Sit[x].Etd).format("YYYY-MM-DD")}
+                        td #{moment(lots[i].Sit[x].Wh).format("YYYY-MM-DD")}
+                        td= lots[i].Sit[x].Memo
+                   -  }
+             
+               - else 
+                   tr
+                        td #{moment(lots[i].Issueddate).format("YYYY-MM-DD")}
+                        td= lots[i].Spo
+                        td= lots[i].Bmodel
+                        td= lots[i].Lot
+                        td= lots[i].Qty
+                        td #{moment(lots[i].RequestedETD).format("YYYY-MM-DD")}
+                        td= lots[i].Blupo
+                        td= lots[i].Memo
+                        td
+                        td
+                        td
+                        td
+                        td
+                        td
+                        td
+                        td
+                        td
+                        td
+
+             - }
+

@@ -1,0 +1,57 @@
+extends layout
+
+block page 
+  - var menu = 'PoInfo'
+
+block content
+ p
+  h1 Full PO Information 
+  
+ table.table.table-stripped
+        thead
+          tr
+          th Spo
+          th Bmodel
+          th Umodel
+          th Div
+          th Category
+          th Lot
+          th Qty
+          th RequestedETD
+          th LeadingTime
+          th Baanpo
+          th Blupo
+          th Memo1(GMC)
+          th Memo2(BLin)
+          th Spomemo1
+          th Bal
+          th UHFFOB
+          th SalesPrice
+          th PartsCost
+          th PDCost
+          th FtyFOB
+          th Fcstnumber
+        tbody
+            tr
+          td= po.Spo
+          td= po.Bmodel
+          td= po.Umodel
+          td= po.Div
+          td= po.Category
+          td= po.Lot
+          td= po.Qty
+          td= po.RequestedETD
+          td= po.LeadingTime
+          td= po.Baanpo
+          td= po.Blupo
+          td= po.Memo1
+          td= po.Memo2
+          td= po.Spomemo1
+          td= po.Bal
+          td= po.UHFFOB
+          td= po.SalesPrice
+          td= po.PartsCost
+          td= po.PDCost
+          td= po.FtyFOB
+          td= po.Fcstnumber
+ 

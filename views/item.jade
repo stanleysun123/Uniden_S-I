@@ -1,0 +1,79 @@
+extends layout
+
+block page
+  - var menu = 'index'
+
+block content
+ p
+  h1= item.Bmodel
+
+ p
+  h3 Basci Information :
+
+ table.table.table-stripped
+  thead
+         Transfer
+          th Bmodel
+          th Umodel
+          th SalesPrice 
+          th UHFFOB
+          th PartsCost
+          th PDCost
+          th FtyFOB
+  tbody
+       tr
+        td= item.Bmodel
+        td= item.Umodel
+        td= item.SalesPrice
+        td= item.UHFFOB
+        td= item.PartsCost
+        td= item.PDCost
+        td= item.FtyFOB
+ p
+ h3 Stock On hand :
+
+ table.table.table-stripped
+        thead
+          tr
+          th Qty
+          th Warehouse
+          th WarehouseName
+        tbody
+        each stock, index in stocks
+            tr
+            td= stock.Qty
+            td= stock.Warehouse
+            td= stock.WarehouseName
+
+  p 
+  h3 PO and Stock in Transfer :
+ 
+ table.table.table-stripped
+        thead
+          tr
+          th Lot
+          th Qty
+          th Issueddate
+          th Spo
+          th Bmodel
+          th RequestedETD
+          th LeadingTime
+          th Baanpo
+          th Blupo
+          th Memo
+        tbody
+        each po, index in pos
+            tr
+            td
+             a(href="/pd/#{po.Lot}")= po.Lot
+            td= po.Qty
+            td #{moment(po.Issueddate).format("YYYY-MM-DD")}
+            td= po.Spo
+            td= po.Bmodel
+            td #{moment(po.RequestedETD).format("YYYY-MM-DD")}
+            td= po.LeadingTime
+            td= po.Baanpo
+            td= po.Blupo
+            td= po.Memo
+
+

@@ -1,0 +1,60 @@
+extends layout
+
+block page 
+  - var menu = 'itemlist'
+  
+block content
+ p
+  h2 UV PDSK Information 
+ table.table.table-stripped
+        thead
+          tr
+          th Updatedate
+          th Bmodel
+          th Umodel
+          th Div
+          th Lot
+          th Size
+          th Start
+          th End
+          th Import
+          th Memo
+        tbody
+        each pdschedule, index in pdschedules
+            tr
+            td #{moment(pdschedule.Updatedate).format("YYYY-MM-DD")}
+            td= pdschedule.Bmodel
+            td= pdschedule.Umodel
+            td= pdschedule.Div
+            td= pdschedule.Lot
+            td= pdschedule.Size
+            td #{moment(pdschedule.Start).format("YYYY-MM-DD")}
+            td #{moment(pdschedule.End).format("YYYY-MM-DD")}
+            td= pdschedule.Import
+            td= pdschedule.Memo
+ p
+  h2 SIT Information 
+ table.table.table-stripped
+        thead
+          tr
+          th Invoice
+          th To
+          th Lot
+          th Bmodel
+          th Qty
+          th Etd
+          th Eta
+          th Wh
+          th Memo 
+        tbody
+        each sit, index in sits
+            tr
+            td= sit.Invoice
+            td= sit.To
+            td= sit.Lot
+            td= sit.Bmodel
+            td= sit.Qty
+            td #{moment(sit.Etd).format("YYYY-MM-DD")} 
+            td #{moment(sit.Eta).format("YYYY-MM-DD")}
+            td #{moment(sit.Wh).format("YYYY-MM-DD")}
+            td= sit.Memo

@@ -1,0 +1,28 @@
+extends layout
+block page
+  - var menu = 'admin'
+block content
+  div.admin  
+    if (items.length === 0 )
+      p
+        | Nothing to display. Add a new 
+        a(href="/post") Item
+        |.
+    else
+      
+      table.table.table-stripped
+        thead
+          tr
+            th(colspan="2") Actions
+            th Post Title
+        tbody
+          each item, index in items
+            tr(data-id="#{item.Bmodel}", class=(!item.published)?'unpublished':'')
+              td.action
+                button.btn.btn-danger.btn-sm.remove(type="button")
+                  span.glyphicon.glyphicon-remove(title="Remove")
+              td.action
+                button.btn.btn-default.btn-sm.publish(type="button")
+                  span.glyphicon(class=(item.published)?"glyphicon-pause":"glyphicon-play", title=(item.published)?"Unpublish":"Publish")
+              td= item.Bmodel
+      script(type="text/javascript", src="js/admin.js")

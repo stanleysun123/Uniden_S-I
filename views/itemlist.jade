@@ -1,0 +1,19 @@
+extends layout
+
+block page 
+  - var menu = '2.spoinfo'
+  
+block content
+  p
+
+  if (items.length === 0)
+    | There's no item yet. 
+    a(href="/login") Log in
+    |  to post and publish.
+  else 
+   each item, index in items
+      div
+        h2
+          a(href="/items/#{item.Bmodel}")= item.Bmodel
+
+         

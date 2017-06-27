@@ -1,0 +1,33 @@
+extends layout
+
+block page 
+  - var menu = 'SitInfo'
+
+block content
+ p
+  h1 Full SIT Information 
+  
+ table.table.table-stripped
+        thead
+          tr
+          th Invoice
+          th To
+          th Lot
+          th Bmodel
+          th Qty
+          th ETD
+          th ETA
+          th Wh
+          th Memo 
+        tbody
+        each sit, index in sits
+            tr
+            td= sit.Invoice
+            td= sit.To
+            td= sit.Lot
+            td= sit.Bmodel
+            td= sit.Qty
+            td #{moment(sit.Etd).format("YYYY-MM-DD")} 
+            td #{moment(sit.Eta).format("YYYY-MM-DD")}
+            td #{moment(sit.Wh).format("YYYY-MM-DD")}
+            td= sit.Memo

@@ -1,0 +1,56 @@
+extends layout
+
+block page 
+  - var menu = 'PoInfo'
+
+block content
+ p
+  h1 Full PO Information 
+  
+ table.table.table-stripped
+        thead
+          tr
+          th Issueddate
+          th Spo
+          th Umodel
+          th Bmodel
+          th Lot
+          th UHFFOB
+          th SalesPrice
+          th PartsCost
+          th PDCost
+          th FtyFOB
+          th Qty
+          th RequestedETD
+          th LeadingTime
+          th Baanpo
+          th Blupo
+          th Memo
+          th Spomemo1
+          th Edit
+        tbody
+        each po, index in pos
+            tr
+            td #{moment(po.Issueddate).format("YYYY-MM-DD")}
+            td
+              a(href="/pos/#{po.Spo}")= po.Spo
+            td= po.Umodel
+            td= po.Bmodel
+            td= po.Lot
+            td= po.UHFFOB
+            td= po.SalesPrice
+            td= po.PartsCost
+            td= po.PDCost
+            td= po.FtyFOB
+            td= po.Qty
+            td #{moment(po.RequestedETD).format("YYYY-MM-DD")}
+            td= po.LeadingTime
+            td= po.Baanpo
+            - var number = po.Blupo
+            - console.log("number+"+number)
+            td
+             a(href="/blu/#{po.Blupo}")= po.Blupo
+            td= po.Memo1
+            td= po.Spomemo1
+            td
+              a(href="/edit/pos/#{po.Lot}") Edit

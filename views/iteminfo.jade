@@ -1,0 +1,31 @@
+extends layout
+
+block page 
+  - var menu = 'iteminfo'
+
+block content
+ p
+  h1 Full Item Information 
+  
+ table.table.table-stripped
+  thead
+         tr
+          th Bmodel
+          th Umodel
+          th SalesPrice 
+          th UHFFOB
+          th PartsCost
+          th PDCost
+          th FtyFOB
+  tbody
+    each item, index in items
+       tr
+       td= item.Bmodel
+       td= item.Umodel
+       td= item.SalesPrice
+       td= item.UHFFOB
+       td= item.PartsCost
+       td= item.PDCost
+       td= item.FtyFOB
+
+    

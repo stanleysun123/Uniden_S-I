@@ -5,6 +5,7 @@ var TWITTER_CONSUMER_SECRET = process.env.TWITTER_CONSUMER_SECRET || 'XYZXYZ'
 var moment = require('moment');
 
 var express = require('express'),
+
   routes = require('./routes'),
   http = require('http'),
   path = require('path'),
@@ -126,9 +127,17 @@ app.get('/pdscheduleinfocurrent',routes.pdschedule.showcurrent);
 
 
 app.get('/search', routes.item.search);
+
+
 app.post('/search', routes.item.searchresult);
+
 app.post('/searchspo', routes.po.searchresult);
 
+app.post('/searchpdschedule', routes.pdschedule.searchresult);
+
+//app.post('/searchaccount', routes.account.searchresult));
+
+app.get('/pdscheduleinfohistory/:Lot', routes.pdschedule.showlotpdschedulehistory);
 
 app.get('/spoinfo',routes.po.spoinfo);
 app.get('/pos/:Spo/:Spoyear', routes.po.show);
@@ -165,6 +174,13 @@ app.get('/edit/pos/:Lot', routes.po.getlotfroedit);
 
 // Lots
 app.get('/api-lot',routes.lot.list);
+
+
+// Email funcation
+app.get('/testEmail',routes.account.info);
+
+app.get('/submit/:mail',routes.account.sendemail)
+
 
 app.all('*', function(req, res) {
   res.send(404);

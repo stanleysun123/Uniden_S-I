@@ -1,0 +1,32 @@
+extends layout
+
+block page 
+  - var menu = 'TestMail'
+  
+block content
+
+ p Welcome to a Mailgun form
+       
+        form(id="mgform")
+            label(for="mail") SearchCompmayName
+            input(type="text" id="mail" placeholder="Uniden")
+            button(value="bulk" onclick="mgform.hid=this.value") Send Email
+        script(type="text/javascript" src="js/main.js")
+
+
+  p Account List
+
+        table.table.table-stripped
+         thead
+          tr
+          th Name
+          th Company
+          th Email
+         tbody
+          each account, index in accounts
+            tr
+            td= account.Name
+            td= account.Company
+            td= account.Email
+
+

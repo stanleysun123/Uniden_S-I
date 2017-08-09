@@ -9,3 +9,4 @@ exports.Stockhistory = require('./stockhistory');
 exports.Salerecord = require('./salerecord');
 exports.Salefcst = require('./salefcst');
 exports.Lot = require('./lot');
+exports.Account = require('./account');

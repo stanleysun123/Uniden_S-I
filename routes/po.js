@@ -1,4 +1,4 @@
-var moment = require('moment');
+  var moment = require('moment');
 /*
  * GET po API.
  */
@@ -78,10 +78,10 @@ exports.spoinfo = function(req, res, next) {
  */
 
 exports.searchresult = function(req, res, next) {
-  if (!req.body.Spo )
-    return res.render('search', {error: 'Please enter right SPO Name'});
-  req.models.Po.findOne({
-    Spo: req.body.Spo,
+  if (!req.body.Lot )
+    return res.render('search', {error: 'Please enter right Lot Name'});
+  req.models.Pdscheduleinfo.findOne({
+    Lot: req.body.Spo,
   }, function(error, po){
     if (error) return next(error);
     if (!po) return res.render('search', {error: 'Incorrect SPO'});

@@ -75,12 +75,12 @@
            ul
               li
                 a(href='/pdscheduleinfocurrent', tabindex='-1') Current PDSk
-              li.divider
-              li
-                a(href='/pdscheduleinfocompare', tabindex='-1') Compare Result
               li
                 a(href='/pdscheduleinfo', tabindex='-1') Full PDSK
-      
+              li.divider
+              li
+                a(href='/pdscheduleisearch', tabindex='-1') Search Lot
+         
       li(class=(menu === 'SitInfo')?'active':'')
         a(href="/sitinfo") SITInfo  
 
@@ -100,3 +100,5 @@
               li
                 a(href='#', tabindex='-1') Separated link
  
+       li(class=(menu === 'TestEmail')?'active':'')
+          a(href="/testEmail") TestEmail

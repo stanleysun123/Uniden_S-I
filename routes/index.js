@@ -8,7 +8,7 @@ exports.pdschedule = require('./pdschedule');
 exports.sit = require('./sit');
 exports.stockhistory = require('./stockhistory');
 exports.salerecord = require('./salerecord');
-
+exports.account = require('./account');
 
 /*
  * GET home page.

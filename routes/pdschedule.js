@@ -34,7 +34,7 @@ exports.info = function(req, res, next) {
 
 
 /*
- * GET certain Lot PD info view.
+ * GET certain Lot PD & SIT info view.
  */
 
 
@@ -63,9 +63,9 @@ exports.show = function(req, res, next) {
 
 exports.showcurrent = function(req, res, next) {
 
-  req.models.Pdschedule.findOne({}, null, {sort: {Issueddate:-1}},function(error, maxdaterecord) {
+  req.models.Pdschedule.findOne({}, null, {sort: {Updatedate:-1}},function(error, maxdaterecord) {
     if (error) return next(error);
-    console.log('update:'+maxdaterecord.Updatedate);
+    console.log('Updatedate:'+maxdaterecord.Updatedate);
    // if (!req.session.admin) return res.send(401);    
     req.models.Pdschedule.find({"Updatedate":maxdaterecord.Updatedate}, function(error1, pdschedules) {
         if (error1) return next(error1);
@@ -74,6 +74,51 @@ exports.showcurrent = function(req, res, next) {
 
   });
 };
+
+
+
+/*
+ * POST authenticate route.
+ */
+
+exports.searchresult = function(req, res, next) {
+
+  if (!req.body.Lot)
+    return res.render('search', {error: 'Please enter right Lot Name for pdscheduleinfo'});
+  req.models.Pdschedule.findOne({
+    Lot: req.body.Lot,
+  }, function(error, pdschedule){
+    if (error) return next(error);
+    if (!pdschedule) return res.render('search', {error: 'Incorrect Lot for pdscheduleinfo'});
+    res.redirect('/pdscheduleinfohistory/'+pdschedule.Lot);
+  })
+}
+
+
+
+/*
+ * GET certain Lot PD schedule history
+ */
+
+
+exports.showlotpdschedulehistory = function(req, res, next) {
+
+  if (!req.params.Lot) return next(new Error('No Lot Number'));
+  
+  req.models.Pdschedule.find({Lot: req.params.Lot}, null, {sort: {Updatedate:-1}},function(error, pdschedules) {
+   
+    if (error) return next(error);
+   // if (!req.session.admin) return res.send(401);
+    
+    req.models.Sit.find({Lot: req.params.Lot}, function(error1, sits) {
+        if (error1) return next(error1);
+
+           res.render('pdscheduleinfohistory', {'pdschedules':pdschedules, 'sits':sits,moment: moment});
+ 
+        });
+  });
+};
+
 
 
 

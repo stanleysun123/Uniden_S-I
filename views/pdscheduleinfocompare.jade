@@ -1,0 +1,37 @@
+extends layout
+
+block page 
+  - var menu = 'PdskInfo'
+
+block content
+ p
+  h1 Full PDSK Information 
+  
+ table.table.table-stripped
+        thead
+          tr
+          th Updatedate
+          th Bmodel
+          th Umodel
+          th Div
+          th Lot
+          th Size
+          th Bal
+          th Start
+          th End
+          th Import
+          th Memo
+        tbody
+        each pdschedule, index in pdschedules
+            tr
+            td #{moment(pdschedule.Updatedate).format("YYYY-MM-DD")}
+            td= pdschedule.Bmodel
+            td= pdschedule.Umodel
+            td= pdschedule.Div
+            td= pdschedule.Lot
+            td= pdschedule.Size
+            td= pdschedule.Bal
+            td #{moment(pdschedule.Start).format("YYYY-MM-DD")}
+            td #{moment(pdschedule.End).format("YYYY-MM-DD")}
+            td= pdschedule.Import
+            td= pdschedule.Memo

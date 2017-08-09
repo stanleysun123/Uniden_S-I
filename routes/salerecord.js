@@ -88,6 +88,7 @@ exports.show = function(req, res, next) {
   if (!req.params.Bmodel) return next(new Error('No Item Bmodel'));
 
   
+
     console.log('CurrentMonth:'+CurrentMonth);
     console.log('CurretnYear:'+CurretnYear);
 
@@ -99,8 +100,10 @@ exports.show = function(req, res, next) {
       req.models.Salefcst.find({Bmodel: req.params.Bmodel, Year:CurretnYear,Month:{$gte:Previous2Month}}, function(error, salerefcsts) {   
 
        if (error) return next(error);
-         console.log(salerefcsts);
+         
+          console.log(salerefcsts);
           console.log('Currentdate:'+Currentdate);
+          
           req.models.Po.find({Bmodel: req.params.Bmodel, RequestedETD:{$gte:Currentdate}}, function(error, pos) {   
               
               if (error) return next(error); 

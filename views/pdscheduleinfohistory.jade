@@ -1,0 +1,50 @@
+extends layout
+
+block page 
+  - var menu = 'PdskInfo'
+
+block content
+ p
+  h1 Full PDSK Information 
+  
+ table.table.table-stripped
+        thead
+          tr
+          th Bmodel
+          th Umodel
+          th Div
+          th Lot
+          th Size
+          th Bal
+          each pdschedule, index in pdschedules
+           th Update
+           th End
+           th Delay
+        tbody
+            tr
+            td= pdschedules[0].Bmodel
+            td= pdschedules[0].Umodel
+            td= pdschedules[0].Div
+            td= pdschedules[0].Lot
+            td= pdschedules[0].Size
+            td= pdschedules[0].Bal
+
+            - for (var i = 0; i < pdschedules.length; ++i)
+              - {
+                   td #{moment(pdschedules[i].Updatedate).format("YY-MM-DD")}
+                   td #{moment(pdschedules[i].End).format("YY-MM-DD")}
+                 - if (i < pdschedules.length-1)  
+                   - {
+                       - var end = moment(pdschedules[i].End);
+                       - console.log("end="+end)
+                       - var start = moment(pdschedules[i+1].End);
+                       - console.log("start="+start)
+                       - var durat = moment.duration(end.diff(start)).asDays();
+                       - console.log("durat="+durat)
+                        td= durat
+                    - }
+                 - else 
+                   - {
+                        td= ""
+                    - }
+              - }
